@@ -2,6 +2,40 @@
   "schema": 1,
   "updated_at": "2026-09-26",
   "note": "Mod catalog for ii Engine. Add entries with add_mod.py, then push. The app fetches this file from raw.githubusercontent.com.",
-  "trusted": [],
-  "community": []
+  "trusted": [
+    {
+      "id": "itzgame-info",
+      "name": "ItzGame Info",
+      "description": "Lightweight utility plugin: logs plugin, Unity and system info to the BepInEx console when the game starts. Safe demo plugin - no gameplay changes.",
+      "filename": "ItzGameInfo.dll",
+      "sha256": "704d6c10b2aa438d97e1d7fe321d93645ac8c68e31a814b92e6b37c87967d64e",
+      "byte_size": 4096,
+      "download_url": "https://raw.githubusercontent.com/ItzGameDev/EngineMods/main/mods/ItzGameInfo.dll",
+      "author": {
+        "id": "itzgame",
+        "display_name": "ItzGame",
+        "avatar": null,
+        "role_name": "Creator",
+        "role_color": "#6d9afb"
+      }
+    }
+  ],
+  "community": [
+    {
+      "id": "itzgame-screenshot",
+      "name": "ItzGame Screenshot",
+      "description": "Quality-of-life utility: press F9 to save a screenshot into the game folder (ItzGameScreenshots). No gameplay changes.",
+      "filename": "ItzGameScreenshot.dll",
+      "sha256": "2436fe3daeaab364dfd34f54ca0ea8c5d9ca1295bde09dd14e5e2638dc2a4fdd",
+      "byte_size": 4608,
+      "download_url": "https://raw.githubusercontent.com/ItzGameDev/EngineMods/main/mods/ItzGameScreenshot.dll",
+      "author": {
+        "id": "itzgame",
+        "display_name": "ItzGame",
+        "avatar": null,
+        "role_name": "Creator",
+        "role_color": "#6d9afb"
+      }
+    }
+  ]
 }

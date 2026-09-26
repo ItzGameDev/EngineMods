@@ -54,6 +54,36 @@ Entries missing `id`/`name`/`filename`/`sha256` are ignored by the app
 (defensive validation), and `download_url` defaults to `mods/<filename>` if
 omitted.
 
+## Bundled mods (shipped with the catalog)
+
+Two real BepInEx plugins come with the catalog (source in `src/`, built with
+the game's own assemblies):
+
+| id | tab | file | what it does |
+|---|---|---|---|
+| `itzgame-info` | Trusted | `mods/ItzGameInfo.dll` | Logs plugin/system info to the BepInEx console on load. Config: `Greeting`. |
+| `itzgame-screenshot` | Community | `mods/ItzGameScreenshot.dll` | Press **F9** to save a PNG into `<game>/ItzGameScreenshots/`. |
+
+Rebuild them (Windows, no SDK needed — uses the .NET Framework compiler and
+the BepInEx/Unity DLLs already in the game folder):
+
+```powershell
+$csc = "C:\Windows\Microsoft.NET\Framework64\v4.0.30319\csc.exe"
+$game = "C:\Program Files (x86)\Steam\steamapps\common\Gorilla Tag"
+$man  = "$game\Gorilla Tag_Data\Managed"
+& $csc /target:library /optimize+ /out:mods\ItzGameInfo.dll `
+  /r:"$game\BepInEx\core\BepInEx.dll" /r:"$man\UnityEngine.dll" `
+  /r:"$man\UnityEngine.CoreModule.dll" /r:"$man\netstandard.dll" src\ItzGameInfo.cs
+& $csc /target:library /optimize+ /out:mods\ItzGameScreenshot.dll `
+  /r:"$game\BepInEx\core\BepInEx.dll" /r:"$man\UnityEngine.dll" `
+  /r:"$man\UnityEngine.CoreModule.dll" /r:"$man\UnityEngine.InputLegacyModule.dll" `
+  /r:"$man\UnityEngine.ScreenCaptureModule.dll" /r:"$man\netstandard.dll" src\ItzGameScreenshot.cs
+python add_mod.py mods\ItzGameInfo.dll -n "ItzGame Info" -d "..." --force
+```
+
+After rebuilding a DLL its sha256 changes — always re-run `add_mod.py` so the
+catalog hash matches, or the app refuses the install.
+
 ## Notes
 
 - The repo must stay **public** — the app reads it through raw.githubusercontent.com.
