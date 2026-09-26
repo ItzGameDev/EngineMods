@@ -1,0 +1,7 @@
+{
+  "schema": 1,
+  "updated_at": "2026-09-26",
+  "note": "Mod catalog for ii Engine. Add entries with add_mod.py, then push. The app fetches this file from raw.githubusercontent.com.",
+  "trusted": [],
+  "community": []
+}
